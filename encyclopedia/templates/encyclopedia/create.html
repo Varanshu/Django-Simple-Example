@@ -1,0 +1,30 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Encyclopedia
+{% endblock %}
+
+{% block body %}
+    <h1>{{title}}</h1>
+  {% if error%}
+  <div class="alert alert-warning col-10 d-flex justify-content-center" role="alert">
+    <h3>Error Title already Exists!!!</h3>
+  </div>
+{% endif %}
+
+  <form action="{% url 'create' %}" method="post">
+    {% csrf_token %}
+    <div class="form-group">
+      <label>Title</label>
+      <input class="rounded col-10" type="text" name="title" autocomplete="off" placeholder="Enter title">
+    </div>
+    <div class="form-group">
+      <label>Content in MarkDown</label>
+      <textarea class="form-control col-10" rows="8" wrap="off" name="content"></textarea>
+    </div>
+    <br>
+    <input type="submit" class="col-2 rounded text-center"  value="Submit">
+  </form>
+
+
+{% endblock %}
